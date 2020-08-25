@@ -5,8 +5,8 @@ if (typeof ytVideoId !== 'undefined')
 (function($){
 const refreshProgressPeriod = 200;
 
-const rxTimestampLine = /^\s*(.*?)(?:(?: |&nbsp;)*(?:(\d+)(?: |&nbsp;)*\:(?: |&nbsp;)*(\d{2})|(\d{1,2}))(?: |&nbsp;)*\:(?: |&nbsp;)*(\d{2}))(?:\s|&nbsp;)*(.*?)\s*$/mg;
-const rxVideoSequence = /\[(?: *de *)?([^à\]]+)(?:à([^\]]+))?\]/gi;
+const rxTimestampLine = /^\s*(.*?)(?:(?:\ |&nbsp;)*(?:(\d+)(?:\ |&nbsp;)*\:(?:\ |&nbsp;)*(\d{2})|(\d{1,2}))(?:\ |&nbsp;)*\:(?:\ |&nbsp;)*(\d{2}))(?:\s|&nbsp;)*(.*?)\s*$/mg;
+const rxVideoSequence = /\[(?:\ *de\ *)?([^à\]]+)(?:à([^\]]+))?\]/gi;
 
 function parseYoutubeChaptersFormat(ni)  {
     let struct = [];
@@ -73,10 +73,7 @@ function updateProgress(ts) {
             updateUrlHash(ts);
             break;
         case YT.PlayerState.PLAYING:
-            let seqInfo = $('#video-sequence-info');
-            if (seqInfo.is(':visible')) {
-                seqInfo.slideUp();
-            }
+            hideWelcomeMessage();
             if (stopReadingAt && ts >= stopReadingAt) {
                 player.pauseVideo();
             }
@@ -109,6 +106,13 @@ function updateProgress(ts) {
         }
         tEnd = tStart;
     });
+}
+
+function hideWelcomeMessage() {
+    let seqInfo = $('#video-sequence-info');
+    if (seqInfo.is(':visible')) {
+        seqInfo.slideUp();
+    }
 }
 
 let alreadyPlayed = false;
@@ -193,8 +197,10 @@ function resetYTPlayer(tStart, tEnd) {
     });
 }
 
-function seekToSequence(tStart, tEnd) {
+function seekToSequence(tStart, tEnd, letWelcomeMessage) {
     updateUrlHash(tStart, tEnd);
+    if (letWelcomeMessage !== true)
+		hideWelcomeMessage();
     if (alreadyPlayed) {
         seekVideoAt(tStart, tEnd);
     } else {
@@ -234,7 +240,7 @@ window.onYouTubeIframeAPIReady = function() { // Called by the YT lib once loade
         scrollTop: seqInfo.offset().top
     }, 1000);
     }
-    seekToSequence(tInitialStart, tInitialEnd);
+    seekToSequence(tInitialStart, tInitialEnd, true);
 }
 
 function pad(num) {
@@ -433,7 +439,7 @@ function videoTimeToClockTime(vt) {
 $(function() {
     // Generate the Navigation UI
     let navElt = $('#video-nav');
-    initTimelineCalibration(timelineCalibrationRaw);    
+    initTimelineCalibration(timelineCalibrationRaw);
     let navStructure = parseYoutubeChaptersFormat( navElt.html() );
     let navMarkup = getNavMarkup(navStructure);
     navElt
