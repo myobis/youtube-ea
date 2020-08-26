@@ -32,7 +32,7 @@ function getNavMarkup(allSections) {
             i+1 < allSections.length ? allSections[i+1].startTime : 'false';
         navMarkup.append(
             $('<li class="future">')
-                .prop("startTime", section.startTime)
+                .attr('data-startTime', section.startTime)
                 .append(
                     $('<a />')
                         .attr('href', 'javascript:seekToSequence(' + section.startTime + ', '+ nextSectionStartTime +' );')
@@ -84,7 +84,7 @@ function updateProgress(ts) {
     var tEnd = player.getDuration();
     reverseLi.each(function() {
         let li = $(this);
-        let tStart = li.prop('startTime');
+        let tStart = Number(li.attr('data-startTime'));
         if ( ts < tStart ) {
             li.addClass('future').removeClass('past current');
         } else if (ts >= tEnd) {
@@ -99,7 +99,7 @@ function updateProgress(ts) {
                 let currentTitleHtml = li.find('.title').html();
                 $("#video-progress .sequence-title")
                     .html(currentTitleHtml)
-                    .prop('sequenceDuration', sequenceDuration);
+                    .attr('data-sequenceDuration', sequenceDuration);
             }
             $('#video-progress .progress')
                 .css('width', chapterPercentage+'%');
@@ -305,8 +305,8 @@ function registerSequenceTitleEvents() {
         let titleElt = $(this);
         let parentOffset = titleElt.parent().offset();
         let relX = e.pageX - parentOffset.left;
-        let tStart = $('li.current').prop('startTime');
-        let reStartTime = tStart + titleElt.prop('sequenceDuration') * relX / titleElt.outerWidth();
+        let tStart = Number($('li.current').attr('data-startTime'));
+        let reStartTime = tStart + Number(titleElt.attr('data-sequenceDuration')) * relX / titleElt.outerWidth();
         seekToSequence(reStartTime, false);
     });
 }
