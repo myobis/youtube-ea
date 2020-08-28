@@ -12,6 +12,9 @@
     margin: 0;
     background-color:transparent;
 }
+#video-nav ul {
+    margin-top:0;
+}
 #video-nav a {
     display:block;
     text-decoration:none !important;

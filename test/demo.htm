@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+        <link rel="stylesheet" type="text/css" href="../src/ytea.css" />
+        <style type="text/css">
+            * {font-family: Arial, Helvetica, sans-serif;}
+        </style>
+	</head>
+	<body>
+		<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-sm-10 col-md-8">
+				<div class="trigger-anim" data-anim="false"></div>
+				<div class="wysiwyg">
+					<h1 id="cm-page-title" class="s-title1">
+						Conseil Municipal du&nbsp;25&nbsp;juin&nbsp;2020
+					</h1>
+				</div>
+				<div class="wysiwyg">
+					<p><a href="https://www.ensembleautrement2020.fr/cm/conseil-municipal-du-25-juin-2020">page du site original</a></p>
+					<p>Exemple de séquence incluant une interruption de séance: [de 27:05 à 27:25]<br/>
+					L'interruption a été coupée au montage, ainsi, l'horloge saute de 19h02:13 à 19h05:26 conformément à ce qu'indique la constante timelineCalibrationRaw.
+					</p>
+					Le lien-séquence <a href="demo.htm#debut=7810&fin=7842" onclick="location.hash='debut=7810&fin=7842'; location.reload();"><!-- the onclick handler is required only because we are already on that page and just changing the url hash would not trigger the page reload. -->
+						"Amendes de police"</a> illustre le comprotement
+					dans le cas un lien-séquence en provenance de l'extérieur: La page défile jusqu'à la vidéo qui se trouve préfixée d'un message introductif,
+					mentionnant que le lien cliqué propose une séquence tirée d'une vidéo plus longue.
+				</p>
+				<p>
+					Techniquement, dans tous les cas, youtube requiert une action de l'utilisateur pour compter la vue (click sur le bouton de lancement);
+					c'est pourquoi nous ne lançons jamais la lecture automatiquement après le chargement de la page.
+				</p>
+					<div id="video-sequence-info" style="display:none;">
+						Bonjour &#x1F603;,<br/>Le lien que vous avez suivi pour arriver sur cette page, vous suggère une séquence de <span class="duration"></span>. Vous pouvez lancer sa lecture ci-dessous. Libre à vous de consulter aussi le contexte dans lequel elle s'inscrit.
+					</div>
+					<div id="video-parent"></div>
+					<div id="video-progress">
+						<div class="progress"></div>
+						<div class="sequence-title">&nbsp;</div>
+					</div>
+					<div id="video-nav" class="wysiwyg">
+						0:00 Titre et explications de la démarche de diffusion
+						0:18 Une histoire de vestes
+						4:25 Ouverture du Conseil Municipal
+						6:52 Observations sur le compte rendu du précédent conseil municipal
+						19:31 Indice des élus - rectificatif
+						20:41 Délai non respecté entraînant le report du Débat d'Orientation budgétaire
+						37:04 Le Maire détaille sa vision pour la commune pour les 6 prochaines années
+						58:37 Discussions/Débat sur les différentes visions pour la commune
+						1:34:04 Désignation des membres de la commission d'appels d'offres
+						1:43:44 Approbation des avenants
+						1:47:50 Licence IV Jarnioux
+						1:51:34 Participation au fond d'aide aux entreprises en difficultés
+						1:53:55 Droit à la formation des élus
+						1:58:40 Tableau des effectifs du personnel (vote reporté)
+						1:59:14 Convention CDG69 pour missions intérimaires
+						2:00:43 Harmonisation des coûts des fournitures scolaires sur les 3 écoles
+						2:02:02 Convention avec la CAF pour le temps méridien, et Tarifs des restaurants scolaires
+						2:08:18 Règlement Périscolaire
+						2:10:10 Amendes de Police
+						2:10:42 Indemnité de conseil au receveur municipal
+						2:11:50 Informations diverses
+						2:12:56 Infos COVID-19 : Règles d'utilisation des salles publiques, contraintes restaurateurs, 14 Juillet, etc..
+						2:19:58 Clôture de la séance
+					</div>
+				</div>
+			</div>
+		</div>
+        <script type="text/javascript">
+            // The following 2 constants should be parameterized
+			const ytVideoId = "0lBXAcrymFg";
+			const timelineCalibrationRaw = "00:00=18h35m00s;27:14=19h05m26s";
+		</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type='text/javascript' src='../src/ytea.js'></script>
+        <script>
+            // Loading the Youtube API as proposed in their own documentation
+            var tag = document.createElement('script');
+      
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        </script>
+	</body>
+</html>
