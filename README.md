@@ -65,6 +65,7 @@ Also, the free text in the video page can be considered as input data used by th
 
 ### Javascript constant `ytVideoId`
 This is the famous Youtube Video ID that can be found in the YT video url.
+If it is absent or empty, the video won't be displayed. This is a recommended way to disable the video appearance when necesary (like a page where there could be a video.. but it is not available).
 
 ### Javascript constant `timelineCalibrationRaw`
 This one is optional, and its presence triggers the feature of **Clock time management**.
@@ -103,7 +104,7 @@ Example :
 </div>
 <div id="video-parent"></div>
 <div id="video-progress">
-	<div class="progress"></div>
+	<div class="progress" style="display:none;"></div>
 	<div class="sequence-title">&nbsp;</div>
 </div>
 <div id="video-nav">
@@ -122,6 +123,7 @@ This is a placefolder element *within* which the lib will create the youtube pla
 
 ### #video-progress
 Will welcome the horizontal progress bar, as well as a copy of the chapter label being read.
+Should be initially hidden ( `style="display:none;"` ) because we don't want to see it if there is no video to display.
 
 ### #video-nav
 Should initially contain the chapters definition in YouTube format.
