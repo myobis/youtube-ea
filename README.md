@@ -44,7 +44,6 @@ It functionally allows people attending to a recorded event, to write down the c
 See the test/demo.htm demo page.
 
 ## Dependencies
-- jQuery (tested with 3.5.1 but might work with most of the versions)
 - YouTube Player API for iframe Embeds ([reference](https://developers.google.com/youtube/iframe_api_reference)).
 
 ## Parameterization
